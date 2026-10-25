@@ -92,7 +92,7 @@ def md_to_html(md, cta_html):
             continue
         m = re.match(r'^!\[([^\]]*)\]\((\S+)\)\s*$', line)
         if m:
-            out.append(f'<figure><img src="{esc(m.group(2))}" alt="{esc(m.group(1))}" loading="lazy"></figure>')
+            out.append(f'<figure><img src="{esc(m.group(2))}" alt="{esc(m.group(1))}"></figure>')
             i += 1
             continue
         if line.startswith('|'):
@@ -242,7 +242,7 @@ def build(src, out):
             sys.exit(f"#{p['num']}: 공개하면 안 되는 말이 남음 → {bad}")
         os.makedirs(os.path.join(out, 'posts', p['slug']))
         open(os.path.join(out, 'posts', p['slug'], 'index.html'), 'w', encoding='utf-8').write(doc)
-        thumb = f'<img src="images/{images[0]}" alt="" loading="lazy">' if images else ''
+        thumb = f'<img src="images/{images[0]}" alt="">' if images else ''
         cards.append(f'<a class="card" href="posts/{p["slug"]}/">{thumb}<div class="body">'
                      f'<span class="tag">{esc(p["category"])}</span><h2>{esc(p["title"])}</h2>'
                      f'<p>{esc(p["desc"])}</p></div></a>')
