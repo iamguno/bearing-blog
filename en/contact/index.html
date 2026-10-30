@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
+<meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/contact/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/contact/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/contact/">
+<title>Contact | Roviatech Blog</title>
+<meta name="description" content="Ask us for a bearing quote, a cross-reference between brands, or help finding a discontinued bearing.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/en/contact/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Roviatech Blog">
+<meta property="og:title" content="Contact | Roviatech Blog">
+<meta property="og:description" content="Ask us for a bearing quote, a cross-reference between brands, or help finding a discontinued bearing.">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/wind-turbine-bearings-en-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/en/contact/">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../../en/">Roviatech <span>Blog</span></a><nav><a href="../../en/about/">About</a><a href="../../en/contact/">Contact</a><a class="lang" href="../../contact/" hreflang="ko">한국어</a></nav></div></header>
+<main>
+<h1>Contact</h1>
+<p>We answer questions about bearing quotes, cross-references between brands, discontinued bearings and bearing failures. Click the button below to write an email. If your mail app does not open, copy the address and send your message from your usual email.</p>
+<div class="cta"><p>Email: <span class="mail-addr" data-mailtext data-u="iamguno" data-d="naver.com">Click the button</span></p><a class="btn" href="#" data-mail data-lang="en" data-u="iamguno" data-d="naver.com" data-s="[Blog inquiry] Quote request">Request a Quote</a></div>
+<h2>What to include</h2>
+<ul><li>Bearing number and brand — a photo is fine if the marking has worn off</li><li>Quantity and required delivery date</li><li>Your company and country</li><li>Where the bearing is used — machine type, speed, anything you know</li><li>Photos — the markings on the rings, or the damage</li></ul>
+<p>We are based in Seoul, South Korea (KST, UTC+9), and reply as soon as we can. For orders from outside Korea, availability, lead time, shipping and payment are confirmed case by case.</p>
+<p>The details you send are used only to reply and prepare a quote, as described in our <a href="../privacy/">Privacy Policy</a>.</p>
+</main>
+<footer><div class="inner">© 2026 Roviatech · <a href="../../en/privacy/">Privacy Policy</a></div></footer>
+<div class="consent" id="consent" hidden><p>We use Google Analytics cookies to count visits and see which articles are read.
+<button type="button" data-consent="yes">Accept</button><button type="button" data-consent="no">Decline</button></p></div>
+<script>
+(function () {
+  var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
+  function load() {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', ID);
+  }
+  try { v = localStorage.getItem(KEY); } catch (e) {}
+  if (v === 'yes') { load(); return; }
+  if (v === 'no') { return; }
+  box.hidden = false;
+  box.addEventListener('click', function (e) {
+    var c = e.target.getAttribute('data-consent');
+    if (!c) { return; }
+    try { localStorage.setItem(KEY, c); } catch (err) {}
+    box.hidden = true;
+    if (c === 'yes') { load(); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+    });
+  });
+})();
+</script>
+</body>
+</html>

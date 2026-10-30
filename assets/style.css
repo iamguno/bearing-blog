@@ -45,6 +45,12 @@ img { max-width: 100%; }
 .site-header nav a:hover { color: var(--brand); }
 footer a { color: var(--muted); }
 .mail-addr { font-weight: 700; color: var(--strong); }
+.site-header nav a.lang { padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; color: var(--muted); }
+[hidden] { display: none !important; }
+.consent { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 10; max-width: 720px; margin: 0 auto; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: #ffffff; box-shadow: 0 6px 20px rgba(17, 24, 39, 0.12); font-size: 15px; line-height: 1.6; }
+.consent p { margin: 0; }
+.consent button { margin-left: 8px; padding: 5px 12px; border: 1px solid var(--brand); border-radius: 8px; background: var(--brand); color: #ffffff; font: inherit; font-weight: 700; cursor: pointer; }
+.consent button[data-consent="no"] { background: #ffffff; color: var(--brand); }
 
 main { padding: 24px 20px 56px; }
 h1 { font-size: 30px; line-height: 1.35; margin: 8px 0 20px; color: var(--strong); }

@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
 <meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/contact/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/contact/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/contact/">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C03R1C6F9V');</script>
 <title>문의하기 | 로비아테크 블로그</title>
 <meta name="description" content="베어링 견적, 호환품·단종품 찾기, 고장 상담을 메일로 받아요.">
 <link rel="canonical" href="https://blog.roviatech.co.kr/contact/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="로비아테크 블로그">
 <meta property="og:title" content="문의하기 | 로비아테크 블로그">
 <meta property="og:description" content="베어링 견적, 호환품·단종품 찾기, 고장 상담을 메일로 받아요.">
@@ -19,11 +23,11 @@
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header class="site-header"><div class="inner"><a class="brand" href="../">로비아테크 <span>블로그</span></a><nav><a href="../about/">소개</a><a href="../contact/">문의</a></nav></div></header>
+<header class="site-header"><div class="inner"><a class="brand" href="../">로비아테크 <span>블로그</span></a><nav><a href="../about/">소개</a><a href="../contact/">문의</a><a class="lang" href="../en/contact/" hreflang="en">English</a></nav></div></header>
 <main>
 <h1>문의하기</h1>
 <p>베어링 견적, 호환품·단종품 찾기, 소리나 열 같은 고장 상담을 메일로 받고 있어요. 아래 버튼을 누르면 메일 쓰는 창이 열려요. 창이 열리지 않으면 메일 주소를 복사해서 쓰시던 메일로 보내 주세요.</p>
-<div class="cta"><p>메일 주소: <span class="mail-addr" data-mailtext data-u="iamguno" data-d="naver.com">버튼을 눌러 주세요</span></p><a class="btn" href="#" data-mail data-u="iamguno" data-d="naver.com" data-s="[블로그 문의] 견적·상담">견적 문의하기</a></div>
+<div class="cta"><p>메일 주소: <span class="mail-addr" data-mailtext data-u="iamguno" data-d="naver.com">버튼을 눌러 주세요</span></p><a class="btn" href="#" data-mail data-lang="ko" data-u="iamguno" data-d="naver.com" data-s="[블로그 문의] 견적·상담">견적 문의하기</a></div>
 <h2>이런 내용을 적어 주시면 빨라요</h2>
 <ul><li>베어링 번호(호칭)와 제조사 — 번호가 안 보이면 사진으로도 괜찮아요</li><li>필요한 수량과 희망 납기</li><li>쓰는 곳 — 장비 종류, 회전수처럼 아는 만큼만</li><li>사진 — 베어링에 새겨진 글자, 망가진 모양</li></ul>
 <p>받은 메일은 확인하는 대로 답장드려요. 보내 주신 이름과 연락처는 답장과 견적에만 쓰고, <a href="../privacy/">개인정보 처리방침</a>에 따라 관리해요.</p>
@@ -31,13 +35,16 @@
 <footer><div class="inner">© 2026 로비아테크 · <a href="../privacy/">개인정보 처리방침</a></div></footer>
 <script>
 (function () {
-  var body = '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.';
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
   function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
-               '&body=' + encodeURIComponent(body);
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
     });
   });
 })();

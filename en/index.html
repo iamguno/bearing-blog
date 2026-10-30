@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
+<meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/">
+<title>Roviatech Blog</title>
+<meta name="description" content="Bearing know-how from 30 years in the bearing trade in Korea: how to read bearing numbers, why bearings fail, and where bearings work.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/en/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Roviatech Blog">
+<meta property="og:title" content="Roviatech Blog">
+<meta property="og:description" content="Bearing know-how from 30 years in the bearing trade in Korea: how to read bearing numbers, why bearings fail, and where bearings work.">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/wind-turbine-bearings-en-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/en/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../en/">Roviatech <span>Blog</span></a><nav><a href="../en/about/">About</a><a href="../en/contact/">Contact</a><a class="lang" href="../" hreflang="ko">한국어</a></nav></div></header>
+<main>
+<section class="hero"><h1>Roviatech Blog</h1><p>Bearing know-how from 30 years in the bearing trade in Korea: how to read bearing numbers, why bearings fail, and where bearings work.</p></section>
+<section class="cards"><a class="card" href="posts/wind-turbine-bearings/"><img src="../images/wind-turbine-bearings-en-1.png" alt=""><div class="body"><span class="tag">Where Bearings Work</span><h2>Wind Turbine Bearings: The Five Places They Work</h2><p>Which bearings does a wind turbine use? Pitch, main shaft, gearbox, generator and yaw bearings — what each one does, and why offshore wind makes the job harder.</p></div></a><a class="card" href="posts/how-to-read-bearing-numbers/"><img src="../images/how-to-read-bearing-numbers-en-1.png" alt=""><div class="body"><span class="tag">Bearing Basics</span><h2>How to Read Bearing Numbers (6205ZZ Explained)</h2><p>What does 6205ZZ mean? 6 is the bearing type, 2 the dimension series, 05 the 25 mm bore and ZZ two metal shields. Learn to read bearing numbers and common suffixes such as ZZ, 2RS and C3.</p></div></a></section>
+<p class="more">More articles are on the way.</p>
+<div class="cta"><p>Need a bearing or help with a failed one? Send us the bearing number or a photo.</p><a class="btn" href="contact/" data-mail data-lang="en" data-u="iamguno" data-d="naver.com" data-s="[Blog inquiry] Quote request">Request a Quote</a></div>
+</main>
+<footer><div class="inner">© 2026 Roviatech · <a href="../en/privacy/">Privacy Policy</a></div></footer>
+<div class="consent" id="consent" hidden><p>We use Google Analytics cookies to count visits and see which articles are read.
+<button type="button" data-consent="yes">Accept</button><button type="button" data-consent="no">Decline</button></p></div>
+<script>
+(function () {
+  var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
+  function load() {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', ID);
+  }
+  try { v = localStorage.getItem(KEY); } catch (e) {}
+  if (v === 'yes') { load(); return; }
+  if (v === 'no') { return; }
+  box.hidden = false;
+  box.addEventListener('click', function (e) {
+    var c = e.target.getAttribute('data-consent');
+    if (!c) { return; }
+    try { localStorage.setItem(KEY, c); } catch (err) {}
+    box.hidden = true;
+    if (c === 'yes') { load(); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+    });
+  });
+})();
+</script>
+</body>
+</html>

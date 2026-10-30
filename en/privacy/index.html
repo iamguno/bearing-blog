@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
+<meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/privacy/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/privacy/">
+<title>Privacy Policy | Roviatech Blog</title>
+<meta name="description" content="How the Roviatech Blog uses the information you send us.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/en/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Roviatech Blog">
+<meta property="og:title" content="Privacy Policy | Roviatech Blog">
+<meta property="og:description" content="How the Roviatech Blog uses the information you send us.">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/wind-turbine-bearings-en-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/en/privacy/">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../../en/">Roviatech <span>Blog</span></a><nav><a href="../../en/about/">About</a><a href="../../en/contact/">Contact</a><a class="lang" href="../../privacy/" hreflang="ko">한국어</a></nav></div></header>
+<main>
+<h1>Privacy Policy</h1>
+<p>The Roviatech Blog (blog.roviatech.co.kr) collects only the information needed to answer your inquiry and handles it as follows.</p>
+<h2>What we collect</h2>
+<p>What you send us by email: your name, email address, phone number, company, country, the content of your inquiry and any attached photos. We do not collect anything else from you directly.</p>
+<h2>How we use it</h2>
+<p>Only to reply to your inquiry and prepare a quote. We do not sell it or share it with anyone else.</p>
+<h2>How long we keep it</h2>
+<p>For one year after your inquiry is closed, after which we delete it, unless the law requires us to keep it longer.</p>
+<h2>Analytics</h2>
+<p>With your consent, we use Google Analytics to count visits and see which articles are read. Google Analytics uses cookies and does not give us your name or contact details. On the English pages it runs only if you click "Accept" in the cookie notice. To change your choice, clear this site's data in your browser and choose again.</p>
+<h2>Your rights</h2>
+<p>You can ask us to show, correct or delete the information you sent. Write to the email on our <a href="../contact/">Contact</a> page.</p>
+<h2>Who is responsible</h2>
+<p>The blog operator, based in Seoul, South Korea, is responsible for your information. You can reach us through the <a href="../contact/">Contact</a> page.</p>
+<p>This policy applies from October 30, 2026.</p>
+</main>
+<footer><div class="inner">© 2026 Roviatech · <a href="../../en/privacy/">Privacy Policy</a></div></footer>
+<div class="consent" id="consent" hidden><p>We use Google Analytics cookies to count visits and see which articles are read.
+<button type="button" data-consent="yes">Accept</button><button type="button" data-consent="no">Decline</button></p></div>
+<script>
+(function () {
+  var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
+  function load() {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', ID);
+  }
+  try { v = localStorage.getItem(KEY); } catch (e) {}
+  if (v === 'yes') { load(); return; }
+  if (v === 'no') { return; }
+  box.hidden = false;
+  box.addEventListener('click', function (e) {
+    var c = e.target.getAttribute('data-consent');
+    if (!c) { return; }
+    try { localStorage.setItem(KEY, c); } catch (err) {}
+    box.hidden = true;
+    if (c === 'yes') { load(); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+    });
+  });
+})();
+</script>
+</body>
+</html>

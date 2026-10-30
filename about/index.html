@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
 <meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/about/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/about/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/about/">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C03R1C6F9V');</script>
 <title>블로그 소개 | 로비아테크 블로그</title>
 <meta name="description" content="30년 베어링 현장 경험으로 베어링을 쉽게 풀어 쓰는 로비아테크 블로그를 소개해요.">
 <link rel="canonical" href="https://blog.roviatech.co.kr/about/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="로비아테크 블로그">
 <meta property="og:title" content="블로그 소개 | 로비아테크 블로그">
 <meta property="og:description" content="30년 베어링 현장 경험으로 베어링을 쉽게 풀어 쓰는 로비아테크 블로그를 소개해요.">
@@ -19,7 +23,7 @@
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header class="site-header"><div class="inner"><a class="brand" href="../">로비아테크 <span>블로그</span></a><nav><a href="../about/">소개</a><a href="../contact/">문의</a></nav></div></header>
+<header class="site-header"><div class="inner"><a class="brand" href="../">로비아테크 <span>블로그</span></a><nav><a href="../about/">소개</a><a href="../contact/">문의</a><a class="lang" href="../en/about/" hreflang="en">English</a></nav></div></header>
 <main>
 <h1>블로그 소개</h1>
 <p>로비아테크 블로그는 30년 동안 베어링을 다뤄 온 현장 경험과 공학 지식으로, 베어링을 쓰고 사는 분들이 실제로 궁금해하는 것을 쉽게 풀어 쓰는 곳이에요.</p>
@@ -35,13 +39,16 @@
 <footer><div class="inner">© 2026 로비아테크 · <a href="../privacy/">개인정보 처리방침</a></div></footer>
 <script>
 (function () {
-  var body = '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.';
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
   function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
-               '&body=' + encodeURIComponent(body);
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
     });
   });
 })();

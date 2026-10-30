@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0">
+<meta name="naver-site-verification" content="fee8d032d96fe8d049fef2ab432df04f8d8b290f">
+<link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/about/">
+<link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/about/">
+<link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/about/">
+<title>About | Roviatech Blog</title>
+<meta name="description" content="Roviatech is a bearing company in Seoul, Korea. Our blog explains bearings from 30 years in the field.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/en/about/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Roviatech Blog">
+<meta property="og:title" content="About | Roviatech Blog">
+<meta property="og:description" content="Roviatech is a bearing company in Seoul, Korea. Our blog explains bearings from 30 years in the field.">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/wind-turbine-bearings-en-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/en/about/">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../../en/">Roviatech <span>Blog</span></a><nav><a href="../../en/about/">About</a><a href="../../en/contact/">Contact</a><a class="lang" href="../../about/" hreflang="ko">한국어</a></nav></div></header>
+<main>
+<h1>About</h1>
+<p>Roviatech is a Korean company based in Seoul, South Korea, working with bearings. The Roviatech Blog shares what we have learned from more than 30 years in the bearing trade, written for the people who actually choose, buy and replace bearings.</p>
+<h2>Who it is for</h2>
+<ul><li>Maintenance engineers who keep machines running</li><li>Buyers who source bearings and spare parts</li><li>Students learning about machine elements</li></ul>
+<h2>What we write about</h2>
+<ul><li><strong>Questions from the field</strong> — noisy or hot bearings, finding equivalents across brands, and sourcing discontinued bearings.</li><li><strong>Bearing basics</strong> — how to read bearing numbers, how to choose a bearing type, and bearing life and lubrication, explained without heavy math.</li><li><strong>Where bearings work</strong> — wind turbines, robots, semiconductor plants and more.</li></ul>
+<h2>Written in Korea</h2>
+<p>We work with bearings every day in Korea's machinery market and write from that experience. Most articles are published in Korean first, and selected articles are translated into English.</p>
+<h2>Contact</h2>
+<p>If you are looking for a bearing, a cross-reference between brands, or help with a failed bearing, write to us from the <a href="../contact/">Contact</a> page.</p>
+</main>
+<footer><div class="inner">© 2026 Roviatech · <a href="../../en/privacy/">Privacy Policy</a></div></footer>
+<div class="consent" id="consent" hidden><p>We use Google Analytics cookies to count visits and see which articles are read.
+<button type="button" data-consent="yes">Accept</button><button type="button" data-consent="no">Decline</button></p></div>
+<script>
+(function () {
+  var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
+  function load() {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', ID);
+  }
+  try { v = localStorage.getItem(KEY); } catch (e) {}
+  if (v === 'yes') { load(); return; }
+  if (v === 'no') { return; }
+  box.hidden = false;
+  box.addEventListener('click', function (e) {
+    var c = e.target.getAttribute('data-consent');
+    if (!c) { return; }
+    try { localStorage.setItem(KEY, c); } catch (err) {}
+    box.hidden = true;
+    if (c === 'yes') { load(); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var bodies = {
+    ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
+    en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
+  };
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+    });
+  });
+})();
+</script>
+</body>
+</html>
