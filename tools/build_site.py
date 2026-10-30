@@ -3,7 +3,7 @@
 사용법: python3 build_site.py <원고 md 폴더> <사이트 폴더>
 
 - 글 끝의 '올릴 때 쓸 정보'(작업용 메모)는 공개 페이지에 넣지 않는다.
-- 비어 있는 현장 이야기 자리는 '준비 중'으로 보여 준다.
+- 비어 있는 현장 이야기 자리는 '현장 이야기' 소제목째 공개 페이지에서 뺀다. 이야기를 채우면 그대로 보인다.
 - 견적 문의 버튼은 메일 쓰기 창을 연다. 메일 주소는 스팸을 줄이려고 페이지 글자로 드러내지 않고, 누를 때 만든다.
 - 소개·문의·개인정보 처리방침은 원고 폴더의 '고정 페이지'에 md로 쓴다 (PAGES).
 - 아직 정하지 않은 책 제목과 일정은 공개용 문구로 바꾼다 (PUBLIC_EDITS).
@@ -60,8 +60,6 @@ PUBLIC_EDITS = {
 # 공개 페이지에 남으면 안 되는 말 (작업용 메모, 사업 계획, 책 제목)
 FORBIDDEN = ['올릴 때 쓸 정보', '현장 이야기 자리', '큰아빠', '사장님', '사실 확인', '수수료', '목표액', '『', '』']
 
-FIELD_STORY = ('<div class="field-story">현장 이야기는 준비 중이에요. '
-               '30년 동안 베어링 현장에서 겪은 이야기로 곧 채울게요.</div>')
 CTA_TEXT = '이 베어링 찾으세요? 번호나 사진만 보내 주세요.'
 CTA_TEXT_PREVIEW = '견적 문의는 사이트를 정식으로 열 때 함께 열어요.'
 
@@ -125,10 +123,6 @@ def md_to_html(md, cta_html):
     while i < len(lines):
         line = lines[i]
         if not line.strip():
-            i += 1
-            continue
-        if line.startswith('@@FIELD_STORY@@'):
-            out.append(FIELD_STORY)
             i += 1
             continue
         if line.startswith('@@CTA@@'):
@@ -215,8 +209,9 @@ def publicize(post, published):
         if old not in body:
             sys.exit(f"#{post['num']}: 바꿀 문구를 원고에서 못 찾음 → {old[:40]}…")
         body = body.replace(old, new)
-    # 현장 이야기 자리(인용문)와 견적 문의 줄을 표시로 바꾼다
-    body = re.sub(r'(?m)^> 〔[^\n]*현장 이야기 자리[^\n]*\n(?:>[^\n]*\n)*', '@@FIELD_STORY@@\n', body)
+    # 비어 있는 현장 이야기는 소제목째 빼고(채우면 그대로 보인다), 견적 문의 줄은 표시로 바꾼다
+    body = re.sub(r'(?m)^## 현장 이야기[^\n]*\n+(?=> 〔[^\n]*현장 이야기 자리)', '', body)
+    body = re.sub(r'(?m)^> 〔[^\n]*현장 이야기 자리[^\n]*\n(?:>[^\n]*\n)*\n*', '', body)
     body = re.sub(r'(?m)^\*\*\[견적 문의하기\]\*\*.*$', '@@CTA@@', body)
     # 더 알아보기: 이미 있는 글은 링크로, 나머지 공개 일정은 '준비 중'으로
     for other in published:
