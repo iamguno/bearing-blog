@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>블로그 소개 | 로비아테크 블로그</title>
+<meta name="description" content="30년 베어링 현장 경험으로 베어링을 쉽게 풀어 쓰는 로비아테크 블로그를 소개해요.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/about/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="로비아테크 블로그">
+<meta property="og:title" content="블로그 소개 | 로비아테크 블로그">
+<meta property="og:description" content="30년 베어링 현장 경험으로 베어링을 쉽게 풀어 쓰는 로비아테크 블로그를 소개해요.">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/how-to-read-bearing-numbers-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/about/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../">로비아테크 <span>블로그</span></a><nav><a href="../about/">소개</a><a href="../contact/">문의</a></nav></div></header>
+<main>
+<h1>블로그 소개</h1>
+<p>로비아테크 블로그는 30년 동안 베어링을 다뤄 온 현장 경험과 공학 지식으로, 베어링을 쓰고 사는 분들이 실제로 궁금해하는 것을 쉽게 풀어 쓰는 곳이에요.</p>
+<h2>이런 분들께 도움이 돼요</h2>
+<ul><li>공장에서 기계를 돌보는 정비 담당자</li><li>베어링을 사고 관리하는 구매 담당자</li><li>기계를 공부하는 학생</li></ul>
+<h2>이런 글을 써요</h2>
+<ul><li><strong>현장에서 받은 질문</strong> — 베어링에서 소리가 나거나 뜨거워질 때, 호환품이나 단종품을 찾을 때처럼 실제로 자주 받는 질문에 답해요.</li><li><strong>베어링 기초</strong> — 베어링 번호 읽는 법, 형식 고르는 법, 수명과 윤활을 계산 없이도 알 수 있게 설명해요.</li><li><strong>베어링 이야기</strong> — 풍력발전기, 로봇, 반도체 공장처럼 베어링이 일하는 곳과 베어링의 역사를 들려드려요.</li></ul>
+<h2>준비 중인 책</h2>
+<p>베어링 이야기를 담은 교양책과 베어링 공학책을 준비하고 있어요. 책이 나오면 이곳에서 알려 드릴게요.</p>
+<h2>문의</h2>
+<p>베어링 견적이나 호환품 찾기, 고장 상담이 필요하면 <a href="../contact/">문의하기</a>에서 메일로 편하게 물어봐 주세요.</p>
+</main>
+<footer><div class="inner">© 2026 로비아테크 · <a href="../privacy/">개인정보 처리방침</a></div></footer>
+<script>
+(function () {
+  var body = '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.';
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(body);
+    });
+  });
+})();
+</script>
+</body>
+</html>

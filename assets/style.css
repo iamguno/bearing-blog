@@ -40,6 +40,11 @@ img { max-width: 100%; }
 .site-header .inner { padding: 14px 20px; }
 .brand { font-size: 19px; font-weight: 800; color: var(--brand); text-decoration: none; }
 .brand span { font-weight: 500; color: var(--muted); }
+.site-header .inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.site-header nav a { margin-left: 18px; color: var(--ink); font-size: 15px; font-weight: 600; text-decoration: none; }
+.site-header nav a:hover { color: var(--brand); }
+footer a { color: var(--muted); }
+.mail-addr { font-weight: 700; color: var(--strong); }
 
 main { padding: 24px 20px 56px; }
 h1 { font-size: 30px; line-height: 1.35; margin: 8px 0 20px; color: var(--strong); }

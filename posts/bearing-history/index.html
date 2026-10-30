@@ -3,20 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
 <title>통나무에서 볼 베어링까지 — 베어링의 역사 | 로비아테크 블로그</title>
 <meta name="description" content="베어링은 언제, 어떻게 생겼을까요? 통나무 굴림대와 바퀴 축에서 시작해 다빈치의 구상, 1794년 첫 볼 베어링 특허, 1869년 자전거, 1883년 강구 대량생산까지 베어링의 역사를 한 번에 정리했어요.">
+<link rel="canonical" href="https://blog.roviatech.co.kr/posts/bearing-history/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="로비아테크 블로그">
 <meta property="og:title" content="통나무에서 볼 베어링까지 — 베어링의 역사 | 로비아테크 블로그">
 <meta property="og:description" content="베어링은 언제, 어떻게 생겼을까요? 통나무 굴림대와 바퀴 축에서 시작해 다빈치의 구상, 1794년 첫 볼 베어링 특허, 1869년 자전거, 1883년 강구 대량생산까지 베어링의 역사를 한 번에 정리했어요.">
-<meta property="og:image" content="https://iamguno.github.io/bearing-blog/images/bearing-history-1.png">
-<meta property="og:url" content="https://iamguno.github.io/bearing-blog/posts/bearing-history/">
+<meta property="og:image" content="https://blog.roviatech.co.kr/images/bearing-history-1.png">
+<meta property="og:url" content="https://blog.roviatech.co.kr/posts/bearing-history/">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
-<div class="preview-bar">미리보기 사이트예요 · 정식으로 열기 전이라 검색에는 나오지 않아요</div>
-<header class="site-header"><div class="inner"><a class="brand" href="../../">로비아테크 <span>블로그</span></a></div></header>
+<header class="site-header"><div class="inner"><a class="brand" href="../../">로비아테크 <span>블로그</span></a><nav><a href="../../about/">소개</a><a href="../../contact/">문의</a></nav></div></header>
 <main>
 <p class="crumbs"><a href="../../">← 글 목록</a> · <span class="tag">베어링 이야기</span></p>
 <h1>통나무에서 볼 베어링까지 — 베어링의 역사</h1>
@@ -44,8 +43,21 @@
 <ul><li><a href="../how-to-read-bearing-numbers/">베어링 번호 읽는 법 — 6205ZZ는 무슨 뜻일까</a></li><li>볼 베어링과 롤러 베어링, 무엇이 다를까 <em>(준비 중)</em></li><li>풍력발전기의 거대한 날개를 받치는 베어링 <em>(준비 중)</em></li><li>이 글은 준비 중인 교양책 1장의 두 꼭지를 줄인 것이에요. 책이 나오면 이곳에서 알려 드릴게요.</li></ul>
 <h2>오래된 기계의 베어링을 찾으세요?</h2>
 <p>번호가 닳아 안 보이거나 단종된 베어링도 같은 크기의 호환품을 함께 찾아 드려요. 번호나 사진만 보내 주세요.</p>
-<div class="cta"><p>견적 문의는 사이트를 정식으로 열 때 함께 열어요.</p><span class="btn disabled">견적 문의하기 (준비 중)</span></div>
+<div class="cta"><p>이 베어링 찾으세요? 번호나 사진만 보내 주세요.</p><a class="btn" href="../../contact/" data-mail data-u="iamguno" data-d="naver.com" data-s="[블로그 문의] 통나무에서 볼 베어링까지 — 베어링의 역사">견적 문의하기</a></div>
 </main>
-<footer><div class="inner">© 2026 로비아테크 · 미리보기</div></footer>
+<footer><div class="inner">© 2026 로비아테크 · <a href="../../privacy/">개인정보 처리방침</a></div></footer>
+<script>
+(function () {
+  var body = '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.';
+  function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
+  document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
+               '&body=' + encodeURIComponent(body);
+    });
+  });
+})();
+</script>
 </body>
 </html>
