@@ -32,7 +32,7 @@ CONTACT_EMAIL = 'iamguno@naver.com'
 ANALYTICS_ID = 'G-C03R1C6F9V'   # 2026-10-30, 계정 '로비아테크' > 속성 '로비아테크 블로그'
 # 검색 등록 확인 코드: 구글 서치 콘솔, 네이버 서치어드바이저의 'HTML 태그' 방식 content 값. 비우면 넣지 않는다.
 SITE_VERIFICATION = {'google-site-verification': 'FnGy8vwjUJnrvPE3zHXfZ7db4EVpizQZHd8lW3kn4e0',
-                     'naver-site-verification': ''}
+                     'naver-site-verification': 'fee8d032d96fe8d049fef2ab432df04f8d8b290f'}
 
 # 고정 페이지: (원고 폴더의 '고정 페이지' 안 파일, 주소, 검색 결과에 보일 설명)
 PAGES_DIR = '고정 페이지'
