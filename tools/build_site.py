@@ -97,25 +97,57 @@ LANG = {
                preview='Preview site · not yet open to search engines', preview_foot=' · Preview'),
 }
 
-# 문의 버튼을 누를 때 메일 주소와 메일 틀을 만든다 (페이지 글자에는 주소가 없다)
+# 문의 버튼을 누를 때 메일 주소와 메일 틀을 만든다 (페이지 글자에는 주소가 없다).
+# 메일 앱이 없는 기기나 카톡 같은 앱 안 브라우저에서는 메일 창이 안 열리므로, 누르면 버튼 아래에 주소와 복사 버튼도 보여 준다.
 MAIL_SCRIPT = r'''<script>
 (function () {
   var bodies = {
     ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
     en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
   };
+  var notes = {
+    ko: ['메일 앱이 열리지 않으면 이 주소로 보내 주세요: ', '주소 복사', '복사했어요'],
+    en: ["If your email app didn't open, please write to: ", 'Copy address', 'Copied']
+  };
   function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  function note(a) {
+    var next = a.nextElementSibling;
+    if (next && next.className === 'mail-note') { return; }
+    var t = notes[a.getAttribute('data-lang')] || notes.ko;
+    var p = document.createElement('p'), b = document.createElement('strong'), c = document.createElement('button');
+    p.className = 'mail-note';
+    b.textContent = addr(a);
+    c.type = 'button';
+    c.textContent = t[1];
+    c.addEventListener('click', function () {
+      function select() {
+        var r = document.createRange(), s = window.getSelection();
+        r.selectNodeContents(b); s.removeAllRanges(); s.addRange(r);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(b.textContent).then(function () { c.textContent = t[2]; }, select);
+      } else {
+        select();
+      }
+    });
+    p.appendChild(document.createTextNode(t[0]));
+    p.appendChild(b);
+    p.appendChild(c);
+    a.parentNode.insertBefore(p, a.nextSibling);
+  }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      note(a);
     });
   });
 })();
 </script>'''
 
 # 영어 페이지: 방문자가 동의할 때만 방문 통계를 켠다. 선택은 이 브라우저에만 남는다.
+# 동의 띠가 떠 있는 동안은 맨 아래(문의 버튼, 개인정보 처리방침 링크)가 가려지지 않게 그만큼 아래를 띄운다.
 CONSENT_HTML = '''<div class="consent" id="consent" hidden><p>We use Google Analytics cookies to count visits and see which articles are read.
 <button type="button" data-consent="yes">Accept</button><button type="button" data-consent="no">Decline</button></p></div>
 <script>
@@ -132,11 +164,13 @@ CONSENT_HTML = '''<div class="consent" id="consent" hidden><p>We use Google Anal
   if (v === 'yes') { load(); return; }
   if (v === 'no') { return; }
   box.hidden = false;
+  document.body.style.paddingBottom = (box.offsetHeight + 24) + 'px';
   box.addEventListener('click', function (e) {
     var c = e.target.getAttribute('data-consent');
     if (!c) { return; }
     try { localStorage.setItem(KEY, c); } catch (err) {}
     box.hidden = true;
+    document.body.style.paddingBottom = '';
     if (c === 'yes') { load(); }
   });
 })();

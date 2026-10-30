@@ -63,12 +63,42 @@
     ko: '베어링 번호(호칭):\n제조사:\n수량:\n희망 납기:\n쓰는 곳(장비):\n회사명:\n연락처:\n\n사진이 있으면 첨부해 주세요.',
     en: 'Bearing number:\nBrand:\nQuantity:\nRequired delivery date:\nApplication (machine):\nCompany:\nCountry:\nPhone:\n\nPlease attach photos if you have them.'
   };
+  var notes = {
+    ko: ['메일 앱이 열리지 않으면 이 주소로 보내 주세요: ', '주소 복사', '복사했어요'],
+    en: ["If your email app didn't open, please write to: ", 'Copy address', 'Copied']
+  };
   function addr(el) { return el.getAttribute('data-u') + '@' + el.getAttribute('data-d'); }
+  function note(a) {
+    var next = a.nextElementSibling;
+    if (next && next.className === 'mail-note') { return; }
+    var t = notes[a.getAttribute('data-lang')] || notes.ko;
+    var p = document.createElement('p'), b = document.createElement('strong'), c = document.createElement('button');
+    p.className = 'mail-note';
+    b.textContent = addr(a);
+    c.type = 'button';
+    c.textContent = t[1];
+    c.addEventListener('click', function () {
+      function select() {
+        var r = document.createRange(), s = window.getSelection();
+        r.selectNodeContents(b); s.removeAllRanges(); s.addRange(r);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(b.textContent).then(function () { c.textContent = t[2]; }, select);
+      } else {
+        select();
+      }
+    });
+    p.appendChild(document.createTextNode(t[0]));
+    p.appendChild(b);
+    p.appendChild(c);
+    a.parentNode.insertBefore(p, a.nextSibling);
+  }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      note(a);
     });
   });
 })();
