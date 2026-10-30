@@ -9,6 +9,8 @@
 - 영어판은 원고 폴더의 '영어판'에 쓰고 /en/ 아래에 만든다. 한국어 글과 '주소'가 같으면 짝이 되어
   서로 오가는 링크와 검색엔진용 짝 표시(hreflang)가 붙는다 (EN_POSTS, EN_PAGES).
 - 영어 페이지는 방문자가 동의할 때만 방문 통계를 켠다 (유럽 쿠키 규정).
+- 한국어 페이지는 브라우저 언어에 한국어가 없는 방문자에게만 맨 위에 영어 안내 띠를 띄운다. 자동으로 넘기지는 않는다
+  (구글이 언어에 따라 강제로 넘기지 말라고 안내하고, 넘기면 한국어 페이지가 검색에 덜 잡힐 수 있다).
 - 아직 정하지 않은 책 제목과 일정은 공개용 문구로 바꾼다 (PUBLIC_EDITS).
 - SITE_OPEN이 True면 robots.txt와 사이트맵을 만들고, False면 모든 페이지에 검색 제외(noindex)와 미리보기 표시를 넣는다.
 """
@@ -139,6 +141,25 @@ CONSENT_HTML = '''<div class="consent" id="consent" hidden><p>We use Google Anal
   });
 })();
 </script>'''
+
+
+# 한국어 페이지: 브라우저 언어에 한국어가 없으면 영어판을 알려 주는 띠. 닫으면 이 브라우저에서는 다시 안 뜬다.
+LANG_HINT_HTML = '''<div class="lang-hint" id="lang-hint" hidden data-nosnippet lang="en"><div class="inner"><span>@@TEXT@@ <a href="@@HREF@@" hreflang="en">@@LINK@@</a></span><button type="button" aria-label="Close">×</button></div></div>
+<script>
+(function () {
+  var KEY = 'roviatech-lang-hint', box = document.getElementById('lang-hint'), closed = null;
+  var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+  var korean = langs.some(function (l) { return /^ko\\b/i.test(l || ''); });
+  try { closed = localStorage.getItem(KEY); } catch (e) {}
+  if (korean || closed) { return; }
+  box.hidden = false;
+  box.querySelector('button').addEventListener('click', function () {
+    box.hidden = true;
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+  });
+})();
+</script>
+'''
 
 
 def esc(s):
@@ -312,6 +333,12 @@ def page(title, desc, body_html, depth, og_image, path, og_type='article', lang=
     switch = up + alt.get(other, 'en/' if other == 'en' else '')
     bar = '' if SITE_OPEN else f'<div class="preview-bar">{L["preview"]}</div>\n'
     foot = '' if SITE_OPEN else L['preview_foot']
+    hint = ''
+    if lang == 'ko':
+        text, link = (('This page is also available in English.', 'Read in English →') if 'en' in alt
+                      else ('Some of our articles are also in English.', 'See English articles →'))
+        hint = (LANG_HINT_HTML.replace('@@TEXT@@', text).replace('@@LINK@@', link)
+                .replace('@@HREF@@', esc(switch or './')))
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -330,7 +357,7 @@ def page(title, desc, body_html, depth, og_image, path, og_type='article', lang=
 <link rel="stylesheet" href="{up}assets/style.css">
 </head>
 <body>
-{bar}<header class="site-header"><div class="inner"><a class="brand" href="{home or './'}">{L["brand"]}</a><nav><a href="{home}about/">{L["about"]}</a><a href="{home}contact/">{L["contact"]}</a><a class="lang" href="{switch or './'}" hreflang="{other}">{L["switch"]}</a></nav></div></header>
+{bar}{hint}<header class="site-header"><div class="inner"><a class="brand" href="{home or './'}">{L["brand"]}</a><nav><a href="{home}about/">{L["about"]}</a><a href="{home}contact/">{L["contact"]}</a><a class="lang" href="{switch or './'}" hreflang="{other}">{L["switch"]}</a></nav></div></header>
 <main>
 {body_html}
 </main>

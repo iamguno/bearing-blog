@@ -47,6 +47,10 @@ footer a { color: var(--muted); }
 .mail-addr { font-weight: 700; color: var(--strong); }
 .site-header nav a.lang { padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; color: var(--muted); }
 [hidden] { display: none !important; }
+.lang-hint { background: #eef3ff; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; }
+.lang-hint .inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 760px; margin: 0 auto; padding: 10px 20px; }
+.lang-hint a { font-weight: 700; text-decoration: none; }
+.lang-hint button { border: 0; background: transparent; color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
 .consent { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 10; max-width: 720px; margin: 0 auto; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: #ffffff; box-shadow: 0 6px 20px rgba(17, 24, 39, 0.12); font-size: 15px; line-height: 1.6; }
 .consent p { margin: 0; }
 .consent button { margin-left: 8px; padding: 5px 12px; border: 1px solid var(--brand); border-radius: 8px; background: var(--brand); color: #ffffff; font: inherit; font-weight: 700; cursor: pointer; }

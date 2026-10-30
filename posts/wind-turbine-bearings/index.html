@@ -23,6 +23,21 @@
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
+<div class="lang-hint" id="lang-hint" hidden data-nosnippet lang="en"><div class="inner"><span>This page is also available in English. <a href="../../en/posts/wind-turbine-bearings/" hreflang="en">Read in English →</a></span><button type="button" aria-label="Close">×</button></div></div>
+<script>
+(function () {
+  var KEY = 'roviatech-lang-hint', box = document.getElementById('lang-hint'), closed = null;
+  var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+  var korean = langs.some(function (l) { return /^ko\b/i.test(l || ''); });
+  try { closed = localStorage.getItem(KEY); } catch (e) {}
+  if (korean || closed) { return; }
+  box.hidden = false;
+  box.querySelector('button').addEventListener('click', function () {
+    box.hidden = true;
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+  });
+})();
+</script>
 <header class="site-header"><div class="inner"><a class="brand" href="../../">로비아테크 <span>블로그</span></a><nav><a href="../../about/">소개</a><a href="../../contact/">문의</a><a class="lang" href="../../en/posts/wind-turbine-bearings/" hreflang="en">English</a></nav></div></header>
 <main>
 <p class="crumbs"><a href="../../">← 글 목록</a> · <span class="tag">베어링 이야기</span></p>
