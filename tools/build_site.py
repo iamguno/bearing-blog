@@ -52,7 +52,7 @@ POSTS = ['17_풍력발전기의 거대한 날개를 받치는 베어링.md', '11
 
 # 영어판 (2026-10-30부터 ★ 글을 한국어 글과 함께 올림). 원고 폴더의 '영어판' 안, 고정 페이지는 '영어판/고정 페이지' 안.
 EN_DIR = '영어판'
-EN_POSTS = ['17_Wind Turbine Bearings.md', '11_How to Read Bearing Numbers.md']
+EN_POSTS = ['17_Wind Turbine Bearings.md', '11_How to Read Bearing Numbers.md', '16_History of Bearings.md']
 EN_PAGES = [
     ('About.md', 'about', 'Roviatech is a bearing company in Seoul, Korea. Our blog explains bearings from 30 years in the field.'),
     ('Contact.md', 'contact', 'Ask us for a bearing quote, a cross-reference between brands, or help finding a discontinued bearing.'),
