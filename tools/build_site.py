@@ -26,6 +26,7 @@ SITE_NAME = '로비아테크 블로그'
 # GitHub 설정에도 같은 주소를 등록했다(2026-10-29). 비우고 올리면 주소 등록이 풀려 다른 사람이 주소를 가로챌 수 있으니 비우지 않는다.
 CUSTOM_DOMAIN = 'blog.roviatech.co.kr'
 BASE_URL = f'https://{CUSTOM_DOMAIN}/' if CUSTOM_DOMAIN else 'https://iamguno.github.io/bearing-blog/'
+SITE_HOST = BASE_URL.split('/')[2]   # 방문 통계는 이 주소에서 열린 페이지만 센다 (미리보기는 세지 않는다)
 SITE_INTRO = ('30년 베어링 현장 경험과 공학 지식으로, 베어링 번호 읽는 법부터 '
               '고장 원인과 베어링의 역사까지 쉽게 풀어 씁니다.')
 
@@ -99,6 +100,7 @@ LANG = {
 
 # 문의 버튼을 누를 때 메일 주소와 메일 틀을 만든다 (페이지 글자에는 주소가 없다).
 # 메일 앱이 없는 기기나 카톡 같은 앱 안 브라우저에서는 메일 창이 안 열리므로, 누르면 버튼 아래에 주소와 복사 버튼도 보여 준다.
+# 방문 통계가 켜져 있으면 버튼마다 처음 누른 한 번을 generate_lead로 센다 (애널리틱스에서 '주요 이벤트'로 표시해 둠).
 MAIL_SCRIPT = r'''<script>
 (function () {
   var bodies = {
@@ -137,9 +139,14 @@ MAIL_SCRIPT = r'''<script>
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });
@@ -154,6 +161,7 @@ CONSENT_HTML = '''<div class="consent" id="consent" hidden><p>We use Google Anal
 (function () {
   var KEY = 'roviatech-analytics', ID = '@@ID@@', box = document.getElementById('consent'), v = null;
   function load() {
+    if (location.hostname !== '@@HOST@@') { return; }
     var s = document.createElement('script'); s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
@@ -358,11 +366,13 @@ def page(title, desc, body_html, depth, og_image, path, og_type='article', lang=
         head_extra += f'<link rel="alternate" hreflang="x-default" href="{esc(BASE_URL + alt.get("ko", path))}">\n'
     consent = ''
     if ANALYTICS_ID and lang == 'ko':
-        head_extra += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ANALYTICS_ID}"></script>\n'
-                       '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-                       f"gtag('js',new Date());gtag('config','{ANALYTICS_ID}');</script>\n")
+        head_extra += (f"<script>(function(){{if(location.hostname!=='{SITE_HOST}'){{return;}}"
+                       "var s=document.createElement('script');s.async=true;"
+                       f"s.src='https://www.googletagmanager.com/gtag/js?id={ANALYTICS_ID}';document.head.appendChild(s);"
+                       'window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};'
+                       f"window.gtag('js',new Date());window.gtag('config','{ANALYTICS_ID}');}})();</script>\n")
     elif ANALYTICS_ID:
-        consent = CONSENT_HTML.replace('@@ID@@', ANALYTICS_ID) + '\n'
+        consent = CONSENT_HTML.replace('@@ID@@', ANALYTICS_ID).replace('@@HOST@@', SITE_HOST) + '\n'
     other = 'en' if lang == 'ko' else 'ko'
     switch = up + alt.get(other, 'en/' if other == 'en' else '')
     bar = '' if SITE_OPEN else f'<div class="preview-bar">{L["preview"]}</div>\n'

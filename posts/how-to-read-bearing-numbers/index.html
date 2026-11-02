@@ -8,8 +8,7 @@
 <link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/posts/how-to-read-bearing-numbers/">
 <link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/posts/how-to-read-bearing-numbers/">
 <link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/posts/how-to-read-bearing-numbers/">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C03R1C6F9V');</script>
+<script>(function(){if(location.hostname!=='blog.roviatech.co.kr'){return;}var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config','G-C03R1C6F9V');})();</script>
 <title>베어링 번호 읽는 법 — 6205ZZ는 무슨 뜻일까 | 로비아테크 블로그</title>
 <meta name="description" content="6205ZZ의 6은 형식, 2는 크기 계열, 05는 안지름 25mm, ZZ는 양쪽 실드예요. 베어링 번호를 앞에서부터 나눠 읽는 법과 뒤 기호(ZZ, 2RS, C3)의 뜻을 정리했어요.">
 <link rel="canonical" href="https://blog.roviatech.co.kr/posts/how-to-read-bearing-numbers/">
@@ -110,9 +109,14 @@
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });

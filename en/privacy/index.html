@@ -32,7 +32,7 @@
 <h2>How long we keep it</h2>
 <p>For one year after your inquiry is closed, after which we delete it, unless the law requires us to keep it longer.</p>
 <h2>Analytics</h2>
-<p>With your consent, we use Google Analytics to count visits and see which articles are read. Google Analytics uses cookies and does not give us your name or contact details. On the English pages it runs only if you click "Accept" in the cookie notice. To change your choice, clear this site's data in your browser and choose again.</p>
+<p>With your consent, we use Google Analytics to count visits, see which articles are read, and count how often the quote button is clicked. Google Analytics uses cookies and does not give us your name or contact details. On the English pages it runs only if you click "Accept" in the cookie notice. To change your choice, clear this site's data in your browser and choose again.</p>
 <h2>Your rights</h2>
 <p>You can ask us to show, correct or delete the information you sent. Write to the email on our <a href="../contact/">Contact</a> page.</p>
 <h2>Who is responsible</h2>
@@ -46,6 +46,7 @@
 (function () {
   var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
   function load() {
+    if (location.hostname !== 'blog.roviatech.co.kr') { return; }
     var s = document.createElement('script'); s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
@@ -105,9 +106,14 @@
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });

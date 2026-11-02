@@ -8,8 +8,7 @@
 <link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/contact/">
 <link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/contact/">
 <link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/contact/">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C03R1C6F9V');</script>
+<script>(function(){if(location.hostname!=='blog.roviatech.co.kr'){return;}var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config','G-C03R1C6F9V');})();</script>
 <title>문의하기 | 로비아테크 블로그</title>
 <meta name="description" content="베어링 견적, 호환품·단종품 찾기, 고장 상담을 메일로 받아요.">
 <link rel="canonical" href="https://blog.roviatech.co.kr/contact/">
@@ -86,9 +85,14 @@
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });

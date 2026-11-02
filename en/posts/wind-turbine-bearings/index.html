@@ -54,6 +54,7 @@
 (function () {
   var KEY = 'roviatech-analytics', ID = 'G-C03R1C6F9V', box = document.getElementById('consent'), v = null;
   function load() {
+    if (location.hostname !== 'blog.roviatech.co.kr') { return; }
     var s = document.createElement('script'); s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
@@ -113,9 +114,14 @@
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });

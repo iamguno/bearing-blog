@@ -8,8 +8,7 @@
 <link rel="alternate" hreflang="ko" href="https://blog.roviatech.co.kr/posts/wind-turbine-bearings/">
 <link rel="alternate" hreflang="en" href="https://blog.roviatech.co.kr/en/posts/wind-turbine-bearings/">
 <link rel="alternate" hreflang="x-default" href="https://blog.roviatech.co.kr/posts/wind-turbine-bearings/">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C03R1C6F9V');</script>
+<script>(function(){if(location.hostname!=='blog.roviatech.co.kr'){return;}var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-C03R1C6F9V';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config','G-C03R1C6F9V');})();</script>
 <title>풍력발전기의 거대한 날개를 받치는 베어링 | 로비아테크 블로그</title>
 <meta name="description" content="풍력발전기에는 어떤 베어링이 들어갈까요? 날개를 받치는 주축 베어링, 증속기와 발전기 베어링, 방향과 날개 각도를 바꾸는 요·피치 베어링까지 다섯 자리의 역할과 해상풍력이 어려운 까닭을 쉽게 정리했어요.">
 <link rel="canonical" href="https://blog.roviatech.co.kr/posts/wind-turbine-bearings/">
@@ -103,9 +102,14 @@
   }
   document.querySelectorAll('[data-mailtext]').forEach(function (el) { el.textContent = addr(el); });
   document.querySelectorAll('a[data-mail]').forEach(function (a) {
+    var counted = false;
     a.addEventListener('click', function () {
       a.href = 'mailto:' + addr(a) + '?subject=' + encodeURIComponent(a.getAttribute('data-s') || '') +
                '&body=' + encodeURIComponent(bodies[a.getAttribute('data-lang')] || bodies.ko);
+      if (!counted && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {lead_source: 'quote_button'});
+        counted = true;
+      }
       note(a);
     });
   });
