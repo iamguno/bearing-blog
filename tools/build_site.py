@@ -55,9 +55,9 @@ POSTS = ['17_풍력발전기의 거대한 날개를 받치는 베어링.md', '11
 EN_DIR = '영어판'
 EN_POSTS = ['17_Wind Turbine Bearings.md', '11_How to Read Bearing Numbers.md', '16_History of Bearings.md']
 EN_PAGES = [
-    ('About.md', 'about', 'Roviatech is a bearing company in Seoul, Korea. Our blog explains bearings from 30 years in the field.'),
+    ('About.md', 'about', 'ROVIA TECH is a bearing company in Seoul, Korea. Our blog explains bearings from 30 years in the field.'),
     ('Contact.md', 'contact', 'Ask us for a bearing quote, a cross-reference between brands, or help finding a discontinued bearing.'),
-    ('Privacy.md', 'privacy', 'How the Roviatech Blog uses the information you send us.'),
+    ('Privacy.md', 'privacy', 'How the ROVIA TECH Blog uses the information you send us.'),
 ]
 
 # 공개 페이지에서만 바꿀 문구: (원고 문구, 공개용 문구). 원고에서 못 찾으면 멈춘다. 한국어 글에만 쓴다.
@@ -87,14 +87,14 @@ LANG = {
                button='견적 문의하기', subject='[블로그 문의] ', general='견적·상담',
                email='메일 주소', email_fallback='버튼을 눌러 주세요', owner='로비아테크',
                preview='미리보기 사이트예요 · 정식으로 열기 전이라 검색에는 나오지 않아요', preview_foot=' · 미리보기'),
-    'en': dict(site='Roviatech Blog', brand='Roviatech <span>Blog</span>', locale='en_US',
+    'en': dict(site='ROVIA TECH Blog', brand='ROVIA TECH <span>Blog</span>', locale='en_US',
                intro=('Bearing know-how from 30 years in the bearing trade in Korea: '
                       'how to read bearing numbers, why bearings fail, and where bearings work.'),
                about='About', contact='Contact', privacy='Privacy Policy', switch='한국어', back='← All articles',
                more='More articles are on the way.', cta='Looking for this bearing? Just send us the number or a photo.',
                home_cta='Need a bearing or help with a failed one? Send us the bearing number or a photo.',
                button='Request a Quote', subject='[Blog inquiry] ', general='Quote request',
-               email='Email', email_fallback='Click the button', owner='Roviatech',
+               email='Email', email_fallback='Click the button', owner='ROVIA TECH',
                preview='Preview site · not yet open to search engines', preview_foot=' · Preview'),
 }
 
